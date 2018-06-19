@@ -1,12 +1,12 @@
 require 'calabash-android/calabash_steps'
 
 When(/^I Fill Store’s Name Field with a valid name$/) do
-  query "* id:'signup_company_name'", { setText: "Loja Teste 3" }
+  query "* id:'signup_company_name'", { setText: "Loja Teste 6" }
 end
 
 When(/^I Click one Company size$/) do
   touch "* id:'spinner_company_framework'"
-  touch "* text:'Autônomo'"
+  touch "* text:'Micro Empreendedor Individual'"
 end
 
 When(/^I Click a Target Audience$/) do
@@ -16,7 +16,7 @@ end
 
 When(/^I Click a Quantity of products saled per month$/) do
   touch "* id:'spinner_products_sold_per_month'"
-  touch "* text:'Não vendo produtos'"
+  touch "* text:'até 100 produtos'"
 end
 
 When(/^I Click a Old form of management$/) do
@@ -34,7 +34,7 @@ When(/^I Click on Continuar$/) do
 end
 
 When(/^I Fill Register Name Field with a valid name$/) do
-  query "* id:'signup_user_name'", { setText: "Loja Teste 3" }
+  query "* id:'signup_user_name'", { setText: "Loja Teste 6" }
 end
 
 When(/^I Fill Register Phone Field with a valid phone$/) do
@@ -42,7 +42,7 @@ When(/^I Fill Register Phone Field with a valid phone$/) do
 end
 
 When(/^I Fill Register E\-mail Field with a valid e\-mail$/) do
-  query "* id:'signup_user_email'", { setText: "lojateste3@example.com" }
+  query "* id:'signup_user_email'", { setText: "lojateste6@example.com" }
 end
 
 When(/^I Fill Register Password Field with a valid password$/) do
@@ -51,7 +51,7 @@ end
 
 When(/^I Click on a State$/) do
   touch "* id:'spinner_signup_user_states'"
-  touch "* text:'Distrito Federal'"
+  touch "* text:'Acre'"
 end
 
 When(/^I click on Confirmar Cadastro$/) do
@@ -101,10 +101,15 @@ end
 
 #Scenario: Unsuccessful User Registration (without internet)
 When(/^I turn off the devices connection$/) do
-  system "# {default_device.adb_command} shell am start -a android.intent.action.MAIN -n com.android.settings/wifi.WifiSettings"
-  system "# {default_device.adb_command} shell input keyevent 20 and adb shell input keyevent 19 & adb shell input keyevent 23"
+#ligar o modo avião
+system "#{default_device.adb_command} shell settings put global airplane_mode_on 1"
+system "#{default_device.adb_command} shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true > /dev/null"
 end
 
 Then(/^a message is displayed informing: “Ocorreu um erro ao fazer o cadastro\. Tente novamente em alguns minutos\.”$/) do
-  wait_for_text('Ocorreu um erro ao fazer o cadastro. Tente novamente em alguns minutos.', timeout: 10)
+  wait_for_text('Ocorreu um problema ao se conectar com o servidor. Verifique se sua internet está funcionando', timeout: 20)
+
+#desligar o modo avião
+system "#{default_device.adb_command} shell settings put global airplane_mode_on 0"
+system "#{default_device.adb_command} shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false > /dev/null"
 end

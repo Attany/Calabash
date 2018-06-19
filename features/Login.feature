@@ -1,6 +1,6 @@
-Feature: Login Feature
+Feature: Login
 
-@Login_successful
+@login_successful
   Scenario: Login successful
     When I Click on the right arrow
     And I Click on Começar

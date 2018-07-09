@@ -1,7 +1,18 @@
 require 'calabash-android/calabash_steps'
 
-Given(/^I'm logged in$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+Given(/^I'm logged in app Caixa de Loja$/) do
+  i = 0
+  while i < 8
+     i += 1
+     touch "* id:'stated_arrow'"
+  end
+  touch "* id:'page_dot'"
+  touch "* id:'tv_already_registered'"
+  touch "* id:'tv_erase_all_data'"
+  touch "* id:'button1'"
+  query "* id:'login_email'", { setText: "thales@pdvend.com.br" }
+  query "* id:'login_password'", { setText: "facanacaveiraQ3" }
+  touch "* id:'confirm'"
 end
 
 Given(/^I Click on Abrir Caixa$/) do
@@ -77,5 +88,6 @@ When(/^I Click on Ok$/) do
 end
 
 Then(/^the Discount and Final value is correctly calculated$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  element_exists("* id:'discount_value' text:'0,10'")
+  element_exists("* id:'total_value' text:'0,90'")
 end

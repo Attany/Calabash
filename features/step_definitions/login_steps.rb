@@ -30,9 +30,11 @@ When(/^I Fill Login E\-mail Field with a valid e\-mail$/) do
 end
 
 When(/^I Fill Login Password Field with a valid password$/) do
+  #puts query "* id:'confirm'"
   query "* id:'login_password'", { setText: "facanacaveiraQ3" }
 end
 
-When(/^I Click on Entrar$/) do
+When(/^I Click on Entraraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa$/) do
+
   touch "* id:'confirm'"
 end

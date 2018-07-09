@@ -9,5 +9,5 @@ Feature: Login
     And I Click on Sim, tenho certeza!
     And I Fill Login E-mail Field with a valid e-mail
     And I Fill Login Password Field with a valid password
-    And I Click on Entrar
+    And I Click on Entraraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     Then the text Abertura de Caixa is displayed
